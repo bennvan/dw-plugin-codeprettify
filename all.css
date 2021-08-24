@@ -27,9 +27,9 @@ pre.prettyprint {
  * put line numbers on every line instead of just every fifth line
  */
 pre.prettyprint ol.linenums {
-    padding-left: 1em;
     list-style-position: outside;
 }
+
 pre.prettyprint ol.linenums > li.L0 { list-style-type: decimal; }
 pre.prettyprint ol.linenums > li.L1 { list-style-type: decimal; }
 pre.prettyprint ol.linenums > li.L2 { list-style-type: decimal; }

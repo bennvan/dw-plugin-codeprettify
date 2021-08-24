@@ -1,5 +1,5 @@
 base   codeprettify
-author Satoshi Sahara
+author Satoshi Sahara, Ben van
 email  <sahara.satoshi@gmail.com>
 date   2019-09-29
 name   Code Prettifier
