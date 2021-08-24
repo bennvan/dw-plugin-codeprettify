@@ -6,12 +6,12 @@
  * @author Satoshi Sahara <sahara.satoshi@gmail.com>
  */
 
-$conf['override'] = 0;  // override DW syntax disabled
+$conf['override'] = 1;  // override DW syntax disabled
 $conf['linenums'] = 0;  // implicitly line numbering
 
 $conf['url_prettify_handlers'] = '';
 $conf['url_prettify_skins']    = '';
 
 $conf['lang_handlers']  = 'css';
-$conf['skin']           = '';
+$conf['skin']           = 'monokai.css';
 
