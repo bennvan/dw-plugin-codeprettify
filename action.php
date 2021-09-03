@@ -13,7 +13,35 @@ class action_plugin_codeprettify extends DokuWiki_Action_Plugin
     // register hook
     public function register(Doku_Event_Handler $controller)
     {
+        $controller->register_hook('TOOLBAR_DEFINE', 'AFTER', $this, 'insert_button', array());
+        $controller->register_hook('TOOLBAR_DEFINE', 'AFTER', $this, 'insert_button_inline', array());
         $controller->register_hook('TPL_METAHEADER_OUTPUT', 'BEFORE', $this, 'load_code_prettify');
+    }
+
+    /**
+     * Insert a toolbar button
+     */
+    public function insert_button(Doku_Event $event) {
+        $event->data[] = array(
+            'type' => 'format',
+            'title' => 'Insert code',
+            'icon' => '../../plugins/codeprettify/images/code.png',
+            'open' => '<code: none linenums:1>\n',
+            'close' => '\n</code>',
+        );
+    }
+    
+    /**
+     * Insert a toolbar button
+     */
+    public function insert_button_inline(Doku_Event $event) {
+        $event->data[] = array(
+            'type' => 'format',
+            'title' => 'Insert code inline',
+            'icon' => '../../plugins/codeprettify/images/inline-button.png',
+            'open' => "''%%",
+            'close' => "%%''",
+        );
     }
 
 
