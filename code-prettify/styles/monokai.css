@@ -4,7 +4,7 @@ pre.prettyprint ol.linenums {
 }
 
 /* desert scheme ported from vim to google prettify */
-pre.prettyprint { display: block; background-color: #333 } /*#272822*/
+pre.prettyprint, pre.code, pre.file { display: block; background-color: #333; color: #fff; } /*#272822*/
 pre .nocode { background-color: none; color: #000 }
 pre .str { color: #e3dd73 } /* string  - yellow */
 pre .kwd { color: #8fd8ef; font-style: bold } /*keyword - blue italic*/
@@ -37,4 +37,10 @@ li.L1,li.L3,li.L5,li.L7,li.L9 { }
   pre .tag, code .tag { color: #006; font-weight: bold }
   pre .atn, code .atn { color: #404 }
   pre .atv, code .atv { color: #060 }
+}
+
+/*inline code*/
+code {
+  color: #d9246e;
+  background-color: #e1e1e1;
 }
