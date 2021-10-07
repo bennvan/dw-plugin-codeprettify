@@ -48,6 +48,8 @@ class syntax_plugin_codeprettify_code extends DokuWiki_Syntax_Plugin
         // DokuWiki original syntax patterns
         $this->pattern[11] = '<code\b.*?>(?=.*?</code>)';
         $this->pattern[14] = '</code>';
+        $this->pattern[21] = '<file\b.*?>(?=.*?</file>)';
+        $this->pattern[24] = '</file>';
     }
 
     public function connectTo($mode)
@@ -55,6 +57,7 @@ class syntax_plugin_codeprettify_code extends DokuWiki_Syntax_Plugin
         $this->Lexer->addEntryPattern($this->pattern[1], $mode, $this->mode);
         if ($this->getConf('override')) {
             $this->Lexer->addEntryPattern($this->pattern[11], $mode, $this->mode);
+            $this->Lexer->addEntryPattern($this->pattern[21], $mode, $this->mode);
         }
     }
 
@@ -63,6 +66,7 @@ class syntax_plugin_codeprettify_code extends DokuWiki_Syntax_Plugin
         $this->Lexer->addExitPattern($this->pattern[4], $this->mode);
         if ($this->getConf('override')) {
             $this->Lexer->addExitPattern($this->pattern[14], $this->mode);
+            $this->Lexer->addExitPattern($this->pattern[24], $this->mode);
         }
     }
 
@@ -207,14 +211,15 @@ class syntax_plugin_codeprettify_code extends DokuWiki_Syntax_Plugin
     /**
      * Create output
      */
-    function render($format, Doku_Renderer $renderer, $data)
+    function render($mode, Doku_Renderer $renderer, $data)
     {
-        if ($format == 'metadata') return false;
+        if ($mode !== 'xhtml') return false;
         if (empty($data)) return false;
         list($state, $args, $calls) = $data;
 
         switch ($state) {
             case DOKU_LEXER_ENTER:
+                $renderer->doc .= '<div class="code-toolbar">';
                 if (isset($calls)) {
                     // title of code box
                     $renderer->doc .= '<div class="plugin_codeprettify">';
@@ -228,6 +233,7 @@ class syntax_plugin_codeprettify_code extends DokuWiki_Syntax_Plugin
                 break;
             case DOKU_LEXER_EXIT:
                 $renderer->doc .= '</pre>';
+                $renderer->doc .= '</div>';
                 break;
         }
         return true;
